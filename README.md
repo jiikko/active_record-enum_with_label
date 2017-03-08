@@ -32,7 +32,7 @@ User.status_labels # => ['有効', 'ロック', '未アクティベート']
 User.create(status: :status_active).status_label # => '有効'
 
 ```
-```
+```ruby
 class Issue < ActiveRecord::Base
   enum_with_label :status, {
     status_bug: {
