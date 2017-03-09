@@ -6,7 +6,7 @@ ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:"
 ActiveRecord::Base.logger = Logger.new('/dev/null')
 ActiveRecord::Schema.define do
   create_table :users, force: true do |t|
-    t.integer :status, null: false
+    t.integer :alert_status, null: false
   end
 end
 ActiveRecord::Schema.define do
@@ -18,10 +18,10 @@ end
 class User < ActiveRecord::Base
   include ActiveRecord::EnumWithLabel
 
-  enum_with_label :status, {
-      status_active: '有効',
-      status_lock: 'ロック',
-      status_non_activate: '未アクティベート',
+  enum_with_label :alert_status, {
+      alert_status_none: 'なし',
+      alert_status_mail_sent: 'メール送信',
+      alert_status_telephoned: '電話',
   }
 end
 

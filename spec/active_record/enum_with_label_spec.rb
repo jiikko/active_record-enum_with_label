@@ -8,22 +8,22 @@ describe ActiveRecord::EnumWithLabel do
   describe '::enum_with_label' do
     context 'key, [value1, value2]' do
       it 'return list of labels' do
-        expect(User.status_labels).to match_array([
-          "有効", "ロック", "未アクティベート",
+        expect(User.alert_status_labels).to match_array([
+          'なし', 'メール送信', '電話'
         ])
       end
       describe '#status_label' do
         it 'return value of label' do
-          user = User.create!(status: :status_active)
-          expect(user.status_label).to eq('有効')
+          user = User.create!(alert_status: :alert_status_none)
+          expect(user.alert_status_label).to eq('なし')
         end
       end
       it 'enable ActiveRecord::enum' do
-        user = User.create!(status: :status_active)
-        expect(User.statuses.size).to eq(3)
-        expect(User.status_active.size).to eq(1)
-        expect(user.status_active?).to eq(true)
-        expect(user.status).to eq('status_active')
+        user = User.create!(alert_status: :alert_status_none)
+        expect(User.alert_statuses.size).to eq(3)
+        expect(User.alert_status_none.size).to eq(1)
+        expect(user.alert_status_none?).to eq(true)
+        expect(user.alert_status).to eq('alert_status_none')
       end
     end
 

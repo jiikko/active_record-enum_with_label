@@ -15,14 +15,14 @@ module ActiveRecord
             hash.transform_values { |h| { label: h } }
           )
         when first_value.is_a?(Hash)
+          first_value = nil
           self.enum(name => hash.keys)
-          using_keys = hash.values.first.keys
-          using_keys.each do |key|
+          hash.values.first.keys.each do |key|
             self.define_singleton_method("#{name}_#{key.to_s.pluralize}") do
               hash.transform_values { |x| x[key] }.values
             end
             self.instance_eval do
-              self.send(:define_method, "#{name}_#{key}") { hash[status.to_sym][key] }
+              self.send(:define_method, "#{name}_#{key}") { hash[public_send(name).to_sym][key] }
             end
           end
         else
