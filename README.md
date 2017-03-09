@@ -1,5 +1,6 @@
 # ActiveRecord::EnumWithLabel
 
+Add label and more to `ActiveRecord::Base.enum`.
 
 ## Installation
 
@@ -20,6 +21,8 @@ Or install it yourself as:
 ## Usage
 ```ruby
 class User < ActiveRecord::Base
+  include ActiveRecord::EnumWithLabel
+
   enum_with_label :status, {
       status_active: '有効',
       status_lock: 'ロック',
@@ -34,6 +37,8 @@ User.create(status: :status_active).status_label # => '有効'
 ```
 ```ruby
 class Issue < ActiveRecord::Base
+  include ActiveRecord::EnumWithLabel
+
   enum_with_label :status, {
     status_bug: {
       label: '不具合', value: 5, icon: :fire
@@ -46,8 +51,13 @@ class Issue < ActiveRecord::Base
     },
   }
 end
+
+user = Issue.create!(status: :status_bug)
+user.status_label # => '不具合'
+user.status_value # => 5
+user.status_icon  # => :fire
 ```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/active_record-enum_with_label.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jijkko/active_record-enum_with_label.

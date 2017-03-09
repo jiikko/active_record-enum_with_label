@@ -16,6 +16,8 @@ ActiveRecord::Schema.define do
 end
 
 class User < ActiveRecord::Base
+  include ActiveRecord::EnumWithLabel
+
   enum_with_label :status, {
       status_active: '有効',
       status_lock: 'ロック',
@@ -24,6 +26,8 @@ class User < ActiveRecord::Base
 end
 
 class Issue < ActiveRecord::Base
+  include ActiveRecord::EnumWithLabel
+
   enum_with_label :status, {
     status_bug: {
       label: '不具合', value: 5, icon: :fire
@@ -32,7 +36,7 @@ class Issue < ActiveRecord::Base
      label: '新機能', value: 10, icon: '+1'
     },
     status_question: {
-     label: '質問', value: 15, icon: 'question_mark'
+     label: '質問', value: 15, icon: :question_mark
     },
   }
 end
