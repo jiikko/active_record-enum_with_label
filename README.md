@@ -1,6 +1,6 @@
 # ActiveRecord::EnumWithLabel
 
-Add label and more to `ActiveRecord::Base.enum`.
+`ActiveRecord::EnumWithLabel` adds label and more to `ActiveRecord::Base.enum`.
 
 ## Installation
 
@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
   include ActiveRecord::EnumWithLabel
 
   enum_with_label :alert_status, {
-      alert_status_none: 'なし',
-      alert_status_mail_sent: 'メール送信',
-      alert_status_telephoned: '電話',
+    alert_status_none: 'なし',
+    alert_status_mail_sent: 'メール送信',
+    alert_status_telephoned: '電話',
   }
 end
 
@@ -43,10 +43,10 @@ class Issue < ActiveRecord::Base
       label: '不具合', value: 5, icon: :fire
     },
     status_feature: {
-     label: '新機能', value: 10, icon: '+1'
+      label: '新機能', value: 10, icon: '+1'
     },
     status_question: {
-     label: '質問', value: 15, icon: 'question_mark'
+      label: '質問', value: 15, icon: 'question_mark'
     },
   }
 end

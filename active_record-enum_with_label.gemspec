@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["jiikko"]
   spec.email         = ["n905i.1214@gmail.com"]
 
-  spec.summary       = %q{Add label and more to `ActiveRecord::Base.enum`.}
+  spec.summary       = %q{ActiveRecord::EnumWithLabel adds label and more to ActiveRecord::Base.enum.}
   spec.description   = spec.summary
   spec.homepage      = 'https://github.com/jiikko/active_record-enum_with_label'
 
