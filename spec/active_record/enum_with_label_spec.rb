@@ -29,11 +29,9 @@ describe ActiveRecord::EnumWithLabel do
 
     context 'key, [{ label: value1, value: value2 }]' do
       it 'return list of nested key' do
+        expect(Issue.respond_to?(:status_values)).to eq(false)
         expect(Issue.status_labels).to match_array([
           "不具合", "新機能", "質問",
-        ])
-        expect(Issue.status_values).to match_array([
-          5, 10, 15,
         ])
         expect(Issue.status_icons).to match_array([
           :fire, '+1', :question_mark,
@@ -41,18 +39,19 @@ describe ActiveRecord::EnumWithLabel do
       end
       describe '#status_#{name}' do
         it 'return value of label' do
-          user = Issue.create!(status: :status_bug)
-          expect(user.status_label).to eq('不具合')
-          expect(user.status_value).to eq(5)
-          expect(user.status_icon).to eq(:fire)
+          issue = Issue.create!(status: :status_bug)
+          expect(issue.status_label).to eq('不具合')
+          expect(issue.status_icon).to eq(:fire)
+          expect(issue.status_before_type_cast).to eq(5)
+          expect(issue.respond_to?(:status_value)).to eq(false)
         end
       end
       it 'enable ActiveRecord::enum' do
-        user = Issue.create!(status: :status_bug)
+        issue = Issue.create!(status: :status_bug)
         expect(Issue.statuses.size).to eq(3)
         expect(Issue.status_bug.size).to eq(1)
-        expect(user.status_bug?).to eq(true)
-        expect(user.status).to eq('status_bug')
+        expect(issue.status_bug?).to eq(true)
+        expect(issue.status).to eq('status_bug')
       end
     end
   end

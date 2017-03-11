@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
 end
 
 User.alert_status_labels # => ['なし', 'メール送信', '電話']
-User.create(alert_status: :alert_status_none).alert_status_label # => 'なし'
+user = User.create(alert_status: :alert_status_none)
+user.alert_status_label            # => 'なし'
+user.alert_status_before_type_cast # => 0
 
 ```
 ```ruby
@@ -51,10 +53,10 @@ class Issue < ActiveRecord::Base
   }
 end
 
-user = Issue.create!(status: :status_bug)
-user.status_label # => '不具合'
-user.status_value # => 5
-user.status_icon  # => :fire
+issue = Issue.create!(status: :status_bug)
+issue.status_label            # => '不具合'
+issue.status_icon             # => :fire
+issue.status_before_type_cast # => 5
 ```
 
 ## Contributing
