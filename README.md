@@ -61,4 +61,4 @@ issue.status_before_type_cast # => 5
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jijkko/active_record-enum_with_label.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jiikko/active_record-enum_with_label.
