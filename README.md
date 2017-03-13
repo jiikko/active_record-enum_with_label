@@ -1,6 +1,6 @@
 # ActiveRecord::EnumWithLabel
 
-`ActiveRecord::EnumWithLabel` adds label and more to `ActiveRecord::Base.enum`.
+`ActiveRecord::EnumWithLabel` adds label and more to `ActiveRecord.enum`.
 
 ## Installation
 
